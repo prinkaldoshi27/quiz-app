@@ -5,49 +5,52 @@ import OptionTab from './OptionTab';
 import Keywords from './Keywords';
 import { useNavigate } from 'react-router-dom';
 
-const Container = ({ question, stepperRef, total, setTotal, correctMarks, negMarks, index, duration }) => {
+const Container = ({ question, stepperRef, total, setTotal, correctMarks, negMarks, index, duration, correctAnswer, setCorrectAnswer, negAnswer, setNegAnswer, skipAnswer, setSkipAnswer }) => {
     const [selectedOption, setSelectedOption] = useState([]);
     const [showCorrectAnswer, setShowCorrectAnswer] = useState(false);
     const navigate = useNavigate();
 
-    useEffect(() => {
-        console.log(index);
-    },[]);
-
     const handleOptionClick = (option) => {
+        
+        if (selectedOption.length > 0) return;
+
         const updatedOptions = [...selectedOption];
-        if (updatedOptions.includes(option.description)) {
-            updatedOptions.splice(updatedOptions.indexOf(option.description), 1);
-        } else {
-            updatedOptions.push(option.description);
-            if (!option.is_correct) {
-                const correctOption = question.options.find(opt => opt.is_correct);
-                if (correctOption) {
-                    setTotal(total - negMarks);
-                    setShowCorrectAnswer(true); // Show the correct answer
-                    setTimeout(() => {
-                        setSelectedOption((prev) => [...prev, correctOption.description]);
-                        setTimeout(() => {
-                            if (index === 9) {
-                                navigate('/result'); // Navigate to /result after showing the correct answer
-                            } else {
-                                stepperRef.current.nextCallback();
-                            }
-                        }, 2000); // Delay before navigating
-                    }, 1000); // Delay before showing the correct answer
-                }
-            } else {
-                setTotal(total + correctMarks);
-                setShowCorrectAnswer(true); // Show the correct answer
+        updatedOptions.push(option.description);
+
+        
+        if (!option.is_correct) {
+            const correctOption = question.options.find(opt => opt.is_correct);
+            if (correctOption) {
+                setTotal(prev => prev - negMarks);
+                setNegAnswer(prev => prev + 1);
+                setShowCorrectAnswer(true); 
+                
                 setTimeout(() => {
-                    if (index === 9) {
-                        navigate('/result'); // Navigate to /result after showing the correct answer
-                    } else {
-                        stepperRef.current.nextCallback();
-                    }
-                }, 1000); // Delay before navigating
+                    setSelectedOption((prev) => [...prev, correctOption.description]);
+                    setTimeout(() => {
+                        if (index === 9) {
+                            navigate('/result'); 
+                        } else {
+                            stepperRef.current.nextCallback();
+                        }
+                    }, 2000);
+                }, 1000);
             }
+        } else {
+            
+            setTotal(prev => prev + correctMarks);
+            setCorrectAnswer(prev => prev + 1);
+            setShowCorrectAnswer(true); 
+            setTimeout(() => {
+                if (index === 9) {
+                    navigate('/result'); 
+                } else {
+                    stepperRef.current.nextCallback();
+                }
+            }, 1000);
         }
+
+        
         setSelectedOption(updatedOptions);
     };
 
@@ -56,8 +59,8 @@ const Container = ({ question, stepperRef, total, setTotal, correctMarks, negMar
             <Timer stepperRef={stepperRef} duration={duration} />
             <p className="m-0">{question.description}</p>
             <div>
-                {question.options.map((option, index) => (
-                    <div key={index}>
+                {question.options.map((option, idx) => (
+                    <div key={idx}>
                         <OptionTab
                             option={option}
                             stepperRef={stepperRef}

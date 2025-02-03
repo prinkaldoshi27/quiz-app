@@ -2,14 +2,16 @@ import React from 'react';
 import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
 import { ProgressBar } from 'primereact/progressbar';
+
 import { useNavigate } from 'react-router-dom';
+import { Tag } from 'primereact/tag';
 
-const ResultPage = ({ total }) => {
+const ResultPage = ({ total, totalMarks, correctAnswer, negAnswer, skipAnswer }) => {
   const navigate = useNavigate();
+ 
 
-  // For demonstration, assuming a maximum score of 100.
-  // You can calculate a percentage if your max score differs.
-  const percentage = Math.min((total / 100) * 100, 100);
+  
+  const percentage = Math.min((total / totalMarks) * 100, 100);
 
   return (
     <div className="flex justify-content-center align-items-center" style={{ height: '90vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
@@ -20,6 +22,16 @@ const ResultPage = ({ total }) => {
           <ProgressBar value={percentage} showValue={true} style={{ height: '1.5rem' }} />
           <p style={{ marginTop: '1rem', fontSize: '1rem' }}>You scored {percentage.toFixed(0)}%!</p>
           <div className="p-mt-3">
+
+            <p>
+              <strong>Correct Answer:</strong> <Tag value={correctAnswer} severity="warning" />
+                               </p>
+                               <p>
+              <strong>Wrong Answer:</strong> <Tag value={negAnswer} severity="danger" />
+                               </p>
+                               <p>
+              <strong>Skipped Question: </strong> <Tag value={skipAnswer} severity="contrast" />
+                               </p>
             <Button
               label="Retake Quiz"
               icon="pi pi-refresh"

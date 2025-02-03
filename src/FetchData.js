@@ -1,5 +1,5 @@
 
-const FetchData = (setQues, setLoading, setCorrectMarks, setNegMarks, setTopic, setDuration, setQuestionCount, setTitle) => {
+const FetchData = (setQues, setLoading, setCorrectMarks, setNegMarks, setTopic, setDuration, setQuestionCount, setTitle, setTotalMarks) => {
     const PROXY_URL = "https://thingproxy.freeboard.io/fetch/";
     const API_URL = "https://api.jsonserve.com/Uw5CrX/";
     fetch(PROXY_URL + API_URL)
@@ -13,6 +13,7 @@ const FetchData = (setQues, setLoading, setCorrectMarks, setNegMarks, setTopic, 
             setTitle(data.title);
             setQuestionCount(data.questions_count);
             setDuration(data.duration / data.questions_count);
+            setTotalMarks(data.questions_count * data.correct_answer_marks);
         })
         .catch(error => console.error("Error fetching data:", error));
 }

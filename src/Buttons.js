@@ -2,7 +2,7 @@ import { Button } from 'primereact/button';
 import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 import { useNavigate } from 'react-router-dom';
 
-const Buttons = ({stepperRef, index}) => {
+const Buttons = ({ stepperRef, index, setSkipAnswer }) => {
   const navigate = useNavigate();
    const confirm1 = () => {
       confirmDialog({
@@ -27,17 +27,32 @@ const Buttons = ({stepperRef, index}) => {
    
                         }}>
                       {index !== 9 ?
-                         <>  <Button className="flex" label="Back" severity="secondary" icon="pi pi-arrow-left" onClick={() => stepperRef.current.prevCallback()} disabled={index === 0} />
-                           <Button className="flex" label="Next" icon="pi pi-arrow-right" iconPos="right" onClick={() => stepperRef.current.nextCallback()} disabled={index === 9} />
-                               </> :
-                               <>
-                                   <Button className="flex" label="Back" severity="secondary" icon="pi pi-arrow-left" onClick={() => stepperRef.current.prevCallback()} disabled={index === 0} />
-   
+                        //  <Button className="flex" label="Back" severity="secondary" icon="pi pi-arrow-left" onClick={() => stepperRef.current.prevCallback()} disabled={index === 0} />
+                <>     
+                  <Button 
+                    className="flex" 
+                    label="Skip this Question" 
+                    icon="pi pi-arrow-right" 
+                    iconPos="right" 
+                    onClick={() => {
+                      stepperRef.current.nextCallback();
+                      setSkipAnswer((prev) => prev + 1);
+                    }} 
+                    disabled={index === 9} 
+                  />
+                </> :
+                <>
+                  {/* <Button className="flex" label="Back" severity="secondary" icon="pi pi-arrow-left" onClick={() => stepperRef.current.prevCallback()} disabled={index === 0} /> */}
+
+
                                    <ConfirmDialog />
-                                   <Button className="flex" onClick={confirm1} label="Submit" icon="pi pi-check" iconPos="right" />
+          <Button className="flex" onClick={() => {
+            confirm1();
+            setSkipAnswer((prev) => prev + 1);
+          }} label="Submit" icon="pi pi-check" iconPos="right" />
    
                                </>
-                           }
+      }
                        </div>
   )
 }

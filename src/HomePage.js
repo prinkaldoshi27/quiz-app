@@ -4,7 +4,7 @@ import { Card } from 'primereact/card';
 import { Tag } from 'primereact/tag';
 import { useNavigate } from 'react-router-dom';
 
-const HomePage = ({ topic, duration, questionCount, title, correctMarks, negMarks }) => {
+const HomePage = ({ topic, duration, questionCount, title, correctMarks, negMarks, totalMarks }) => {
     const navigate = useNavigate();
 
     const startQuiz = () => {
@@ -37,7 +37,7 @@ const HomePage = ({ topic, duration, questionCount, title, correctMarks, negMark
                         <strong>Negative Marks Per Question:</strong> <Tag value={"-" + negMarks} severity="danger" />
                     </p>
                     <p>
-                        <strong>Total Marks:</strong> <Tag value={questionCount * correctMarks} severity="warning" />
+                        <strong>Total Marks:</strong> <Tag value={totalMarks} severity="warning" />
                     </p>
                 </div>
                 <div style={{ marginTop: '2rem' }}>
