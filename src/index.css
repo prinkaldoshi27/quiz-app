@@ -1,0 +1,10 @@
+/* Default Step Circle */
+.p-stepper .p-stepper-nav li .p-stepper-number {
+    background-color: gray !important;
+    color: white !important;
+}
+
+/* Change Color for Completed Questions */
+.p-stepper .p-stepper-nav li.answered .p-stepper-number {
+    background-color: green !important;
+}

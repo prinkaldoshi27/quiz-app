@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Card } from 'primereact/card';
 
-const OptionTab = ({ index, option, stepperRef, question, handleOptionClick, selectedOption }) => {
+const OptionTab = ({ option, stepperRef, question, handleOptionClick, selectedOption }) => {
 
   return (
     <Card

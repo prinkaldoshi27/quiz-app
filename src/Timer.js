@@ -2,12 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import { ProgressBar } from 'primereact/progressbar';
 import { Toast } from 'primereact/toast';
 
-export default function Timer({ stepperRef }) {
+export default function Timer({ stepperRef, duration }) {
     const [value, setValue] = useState(0);
     const toast = useRef(null);
     const interval = useRef(null);
-    // const maxTime = 5 * 60 * 1000; 
-    const maxTime = 5 * 1000; 
+    const maxTime = duration * 60 * 1000; 
 
     useEffect(() => {
         let _val = value;

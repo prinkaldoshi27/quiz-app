@@ -1,14 +1,16 @@
 import { Button } from 'primereact/button';
 import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
+import { useNavigate } from 'react-router-dom';
 
 const Buttons = ({stepperRef, index}) => {
+  const navigate = useNavigate();
    const confirm1 = () => {
       confirmDialog({
         message: 'Are you sure you want to Submit?',
           header: 'Confirmation',
           icon: 'pi pi-exclamation-triangle',
           accept: () => {
-          window.location.href = '/result';
+            navigate('/result');
           },
           defaultFocus: 'accept',
       });
