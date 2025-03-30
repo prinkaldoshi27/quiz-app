@@ -1,6 +1,6 @@
 const FetchData = (setQues, setLoading, setCorrectMarks, setNegMarks, setTopic, setDuration, setQuestionCount, setTitle, setTotalMarks) => {
-    const QUIZ_DETAILS_URL = "http://localhost:3500/quizDetails";
-    const QUESTIONS_URL = "http://localhost:3500/questions";
+    const QUIZ_DETAILS_URL = "https://quiz-app-hi1n.onrender.com/quizDetails";
+    const QUESTIONS_URL = "https://quiz-app-hi1n.onrender.com/questions";
 
     fetch(QUIZ_DETAILS_URL)
         .then(response => response.json())
