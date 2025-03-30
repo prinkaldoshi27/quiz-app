@@ -1,0 +1,83 @@
+{
+  "quizDetails": {
+    "title": "General Knowledge Quiz",
+    "topic": "General Knowledge",
+    "duration": 2,
+    "questionCount": 10,
+    "correctMarks": 1,
+    "negMarks": 0.25,
+    "totalMarks": 10
+  },
+  "questions": [
+    {
+      "id": 1,
+      "question": "What is the capital of France?",
+      "options": ["Berlin", "Madrid", "Paris", "Rome"],
+      "answer": "Paris",
+      "keywords": ["Capital", "France", "Geography", "Europe"]
+    },
+    {
+      "id": 2,
+      "question": "Which programming language is known for web development?",
+      "options": ["Python", "C++", "JavaScript", "Java"],
+      "answer": "JavaScript",
+      "keywords": ["Programming", "Web Development", "JavaScript", "Coding"]
+    },
+    {
+      "id": 3,
+      "question": "What is the square root of 64?",
+      "options": ["6", "7", "8", "9"],
+      "answer": "8",
+      "keywords": ["Mathematics", "Square Root", "Numbers", "Arithmetic"]
+    },
+    {
+      "id": 4,
+      "question": "Who developed the theory of relativity?",
+      "options": ["Isaac Newton", "Albert Einstein", "Galileo Galilei", "Nikola Tesla"],
+      "answer": "Albert Einstein",
+      "keywords": ["Physics", "Theory of Relativity", "Einstein", "Science"]
+    },
+    {
+      "id": 5,
+      "question": "Which planet is known as the Red Planet?",
+      "options": ["Venus", "Mars", "Jupiter", "Saturn"],
+      "answer": "Mars",
+      "keywords": ["Space", "Mars", "Planets", "Astronomy"]
+    },
+    {
+      "id": 6,
+      "question": "What is the chemical symbol for water?",
+      "options": ["H2O", "O2", "CO2", "NaCl"],
+      "answer": "H2O",
+      "keywords": ["Chemistry", "Water", "H2O", "Science"]
+    },
+    {
+      "id": 7,
+      "question": "Who wrote 'Hamlet'?",
+      "options": ["Charles Dickens", "William Shakespeare", "Jane Austen", "Leo Tolstoy"],
+      "answer": "William Shakespeare",
+      "keywords": ["Literature", "Shakespeare", "Hamlet", "Drama"]
+    },
+    {
+      "id": 8,
+      "question": "What is the largest ocean on Earth?",
+      "options": ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"],
+      "answer": "Pacific Ocean",
+      "keywords": ["Geography", "Oceans", "Pacific Ocean", "Earth"]
+    },
+    {
+      "id": 9,
+      "question": "Which gas do plants absorb from the atmosphere?",
+      "options": ["Oxygen", "Nitrogen", "Carbon Dioxide", "Hydrogen"],
+      "answer": "Carbon Dioxide",
+      "keywords": ["Biology", "Plants", "Photosynthesis", "Carbon Dioxide"]
+    },
+    {
+      "id": 10,
+      "question": "How many continents are there on Earth?",
+      "options": ["5", "6", "7", "8"],
+      "answer": "7",
+      "keywords": ["Geography", "Continents", "Earth", "World"]
+    }
+  ]
+}

@@ -1,20 +1,27 @@
-
 const FetchData = (setQues, setLoading, setCorrectMarks, setNegMarks, setTopic, setDuration, setQuestionCount, setTitle, setTotalMarks) => {
-    const PROXY_URL = "https://thingproxy.freeboard.io/fetch/";
-    const API_URL = "https://api.jsonserve.com/Uw5CrX/";
-    fetch(PROXY_URL + API_URL)
+    const QUIZ_DETAILS_URL = "http://localhost:3500/quizDetails";
+    const QUESTIONS_URL = "http://localhost:3500/questions";
+
+    fetch(QUIZ_DETAILS_URL)
         .then(response => response.json())
         .then(data => {
-            setQues(data.questions);
-            setCorrectMarks(parseInt(data.correct_answer_marks, 10));
-            setNegMarks(Math.abs(parseInt(data.negative_marks, 10)));
-            setLoading(false);
-            setTopic(data.topic);
             setTitle(data.title);
-            setQuestionCount(data.questions_count);
-            setDuration(data.duration / data.questions_count);
-            setTotalMarks(data.questions_count * data.correct_answer_marks);
+            setTopic(data.topic);
+            setQuestionCount(data.questionCount);
+            setDuration(data.duration / data.questionCount);
+            setCorrectMarks(parseInt(data.correctMarks, 10));
+            setNegMarks(Math.abs(parseFloat(data.negMarks)));
+            setTotalMarks(data.questionCount * data.correctMarks);
         })
-        .catch(error => console.error("Error fetching data:", error));
+        .catch(error => console.error("Error fetching quiz details:", error));
+
+    fetch(QUESTIONS_URL)
+        .then(response => response.json())
+        .then(data => {
+            setQues(data);
+            setLoading(false);
+        })
+        .catch(error => console.error("Error fetching questions:", error));
 }
-export default FetchData
+
+export default FetchData;
